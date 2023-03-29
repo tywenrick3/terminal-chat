@@ -20,7 +20,7 @@ def format_prompt(prompt):
     return f"User: {prompt}\nGPT-4: "
 
 
-# send request to OpenAI
+# send request to OpenAI and cache the response
 @lru_cache(maxsize=128)
 def send_request(prompt):
     response = openai.ChatCompletion.create(
@@ -32,7 +32,7 @@ def send_request(prompt):
             {'role': 'assistant', 'content': ''},
         ],
         temperature=0.6,
-        max_tokens=500,
+        # max_tokens=500,
     )
     return response['choices'][0]['message']['content']
 
