@@ -16,6 +16,7 @@ Before running this script, you need to have the following:
 2. Create a `.env` file in the root directory of the repository.
 3. Add your OpenAI API key to the `.env` file as follows: `OPENAI_API_KEY=your-api-key-here`.
 4. Install the required packages by running `pip install -r requirements.txt`.
+5. Specify a working chat model name in `app.y` on line `10`, that is eligible with your openai key.
 
 ## Usage
 
