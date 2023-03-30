@@ -12,7 +12,7 @@ start_time = time.time()
 
 
 system_prompt = "You are codeGPT, a helpful coding assistant that thinks in steps and then thoughtfully writes clean code."
-prompt = "write a python script that generates ASCII art in the terminal"
+prompt = "write a python script that generates ASCII art in the terminal, randomely without an input image"
 
 # send a ChatCompletion request to count to 100
 response = openai.ChatCompletion.create(
