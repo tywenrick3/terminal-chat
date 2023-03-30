@@ -27,7 +27,7 @@ def send_request(prompt):
         model=MODEL_NAME,
         messages=[
             {'role': 'system',
-                'content': 'You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.'},
+                'content': 'You are TerminalGPT, a large language model trained by OpenAI. Answer as concisely as possible.'},
             {'role': 'user', 'content': 'Prompt: ' + prompt},
             {'role': 'assistant', 'content': ''},
         ],
