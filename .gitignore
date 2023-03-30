@@ -2,4 +2,6 @@
 
 venv/
 
+# test scripts
 art-test.py
+speed-test.py
