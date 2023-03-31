@@ -24,4 +24,7 @@ To use TerminalGPT, navigate to the directory where you cloned the repository an
 
 This will launch the script, and you will be prompted to enter text. Type your prompt and press enter to receive a response from GPT-4.
 
+The first message will ask for you to set the chat setting - the default is general
+This setting helps nudge the chat bot in a better direction for giving the user their desired generation
+
 To exit the script, type "quit" and press enter.
