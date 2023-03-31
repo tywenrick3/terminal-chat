@@ -103,6 +103,7 @@ def send_request(prompt):
 def generate_response(prompt, chat_type):
     prompt = format_prompt(prompt)
 
+    # chat type request handling
     if chat_type == "create":
         start_time = time.time()
         response = send_create_request(prompt)
