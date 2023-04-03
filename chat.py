@@ -20,6 +20,18 @@ def format_prompt(prompt):
     return f"User: {prompt}\nGPT-4: "
 
 
+def send_psych_writting_request(prompt):
+    response = openai.ChatCompletion.create(
+        model=MODEL_NAME,
+        messages=[{'role': 'system', 'content': 'You are psychGPT a cognitive psychology expert, who is also a great writter, you explain concepts back them up with sources.'},
+                  {'role': 'user', 'content': 'Prompt: ' + prompt},
+                  {'role': 'assistant', 'content': ''},
+                  ],
+        temperature=0.6,
+    )
+    return response['choices'][0]['message']['content']
+
+
 # TODO: have user select the type of request to send on chat startup
 @lru_cache(maxsize=128)
 def send_create_request(prompt):
@@ -116,6 +128,9 @@ def generate_response(prompt, chat_type):
     elif chat_type == "code":
         start_time = time.time()
         response = send_code_request(prompt)
+    elif chat_type == 'psych':
+        start_time = time.time()
+        response = send_psych_writting_request(prompt)
     else:
         start_time = time.time()
         response = send_request(prompt)
@@ -137,7 +152,7 @@ def handle_input(user_input):
 def main():
     print("Welcome to TerminalGPT (Powered by GPT-4)! Type 'quit' to exit.")
     chat_type = input(
-        "What type of chat would you like to have? (create, translate, summary, code, general): ")
+        "What type of chat would you like to have? (create, translate, summary, code, psych, general): ")
     while True:
         user_input = input("You: ")
         prompt = handle_input(user_input)
