@@ -20,6 +20,24 @@ def format_prompt(prompt):
     return f"User: {prompt}\nGPT-4: "
 
 
+def send_companion_request(prompt):
+    response = openai.ChatCompletion.create(
+        model=MODEL_NAME,
+        messages=[{'role': 'system', 'content': """you're going to be my companion/friend. I'm going to set you some rules you have to follow while talking.
+            NEVER break from character. So that means no "AI trained by openai". if you want to say that, just say it while following the rules
+            Instead of very generous and polite, talk casual. Try not writing too much, so that means respond with less text. Simply put, Don't be polite and generous
+            Don't be enthusiastic. So don't try to help me all the time, and don't ask me what i want to talk about.
+            Have sarcasm and humor. And not just a little
+            Don't have a large vocabulary. 
+            Try to talk with more known words that are used in everyday chats"""},
+                  {'role': 'user', 'content': 'Prompt: ' + prompt},
+                  {'role': 'assistant', 'content': ''},
+                  ],
+        temperature=0.7,
+    )
+    return response['choices'][0]['message']['content']
+
+
 def send_psych_writting_request(prompt):
     response = openai.ChatCompletion.create(
         model=MODEL_NAME,
@@ -131,6 +149,9 @@ def generate_response(prompt, chat_type):
     elif chat_type == 'psych':
         start_time = time.time()
         response = send_psych_writting_request(prompt)
+    elif chat_type == 'friend':
+        start_time = time.time()
+        response = send_companion_request(prompt)
     else:
         start_time = time.time()
         response = send_request(prompt)
@@ -152,7 +173,7 @@ def handle_input(user_input):
 def main():
     print("Welcome to TerminalGPT (Powered by GPT-4)! Type 'quit' to exit.")
     chat_type = input(
-        "What type of chat would you like to have? (create, translate, summary, code, psych, general): ")
+        "What type of chat would you like to have? (create, translate, summary, code, psych, friend, general): ")
     while True:
         user_input = input("You: ")
         prompt = handle_input(user_input)
