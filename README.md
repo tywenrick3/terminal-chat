@@ -1,4 +1,4 @@
-# TerminalGPT
+# GPTCLI
 
 TerminalGPT is a Python script that enables users to interact with the GPT-4 language model through a terminal interface. This script uses the OpenAI API to generate responses to prompts provided by the user.
 
